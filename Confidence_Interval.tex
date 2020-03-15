@@ -1,0 +1,352 @@
+\documentclass[a4paper,13pt,twoside]{book}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+
+\pagestyle{headings}
+\begin{document}
+
+
+
+\chapter{Confidence}
+
+
+
+\section{Definition}
+
+In statistics, a confidence interval is an interval that indicates the precision of the estimation of a parameter (for example, the mean of a population). 
+
+It is a mathematical approach to work with samples of a population properly and to find a “true” value in a data set.
+
+There are several methods.
+
+
+
+\section{Mathematical background}
+
+\subsection{Populations and samples}
+
+A population is a set of data with all information or parameter of a group of interest existing.
+
+A sample is a set of data taken from a statistical population. A sample has always a sampling error due to the variance of the population. So the larger the sample, the better it represents the overall population.
+
+
+
+\subsection{The mathematical idea}
+
+The features of a data set can be represented by a normal distribution. A normal distribution has a variance and a mean. 
+
+The mean of a sample of a population lies in the variance of its population. The variance of a sample overlaps with the variance of its population.
+
+A corresponding percentage of the normal distribution can be included in a defined interval. There are several confidence levels with corresponding z-values.
+
+
+
+\subsection{Calculation of a classical confidence interval}
+
+\paragraph{Formula}
+
+$$
+\overline{x} \pm 
+z \cdot
+\frac{s}{\sqrt{n}}
+$$
+
+\textbf{x̄} is the mean of the sample.
+
+\textbf{z} is the z-value of the chosen confidence level. It is taken from from a z-value table for confidence intervals.
+
+\textbf{s} is the estimate of the covariance of the sample.
+
+\textbf{n} is the number of sample elements.
+
+
+
+\subsection{Calculation using an example:}
+
+A sample data set with the weights of four apples: 
+
+$$D = \{146 g, 162 g, 124 g, 148 g\}$$
+
+
+
+\subsubsection{Determination of the number of sample elements n:}
+
+There are four sample elements in the data set.
+
+$$
+n = 4
+$$
+
+
+
+\subsubsection{Calculation of the mean x̄:}
+
+x̄ is calculated by dividing the sum of the sample elements by the number of sample elements.
+
+\paragraph{Formula:}
+
+$$
+\overline{x} =
+\frac
+{\sum_{i=1}^{\\n} D_i}
+{n}
+$$
+
+\paragraph{Calculation:}
+
+$$
+\overline{x} =
+\frac
+{146 g + 162 g + 124 g + 148 g}
+{4} =
+\frac
+{580}
+{4} =
+145 g
+$$
+
+
+
+\subsubsection{Determination of the z-value of the confidence level:}
+
+\begin{tabular}{ll}
+confidence level & z-value \\
+90%              & 1.645   \\
+95%              & 1.960   \\
+98%              & 2.326   \\
+99%              & 2.576   
+\end{tabular}
+
+The z-value of a 95 % confidence level (industry standard) is 1.96.
+
+$$
+z = 1.96
+$$
+
+
+
+\subsubsection{Calculation of the covariance of the sample s:}
+
+\paragraph{Formula:}
+
+$$
+s =
+\sqrt
+{
+\frac
+{\sum_{i=1}^{\\n} (D_i - \overline{x})^{2}}
+{n - 1}
+}
+$$
+
+\paragraph{Calculation:}
+
+$$
+s =
+\sqrt
+{
+\frac
+{
+(146 g - 145 g)^{2} +
+(162 g - 145 g)^{2} +
+(124 g - 145 g)^{2} +
+(148 g - 145 g)^{2}
+}
+{3}
+}
+$$
+
+$$
+s =
+\sqrt
+{
+\frac
+{
+(1    g)^{2} +
+(17   g)^{2} +
+(- 21 g)^{2} +
+(3    g)^{2}
+}
+{3}
+}
+$$
+
+$$
+s =
+\sqrt
+{
+\frac
+{
+1   g^{2} +
+289 g^{2} +
+441 g^{2} +
+9   g^{2}
+}
+{3}
+}
+$$
+
+$$
+s =
+\sqrt{\frac{740 g^{2}}{3}} \approx
+\sqrt{246.6 g^{2}} \approx 15.7 g
+$$
+
+
+
+\subsubsection{Calculation of the confidence interval:}
+
+\paragraph{Formula:}
+
+$$
+\overline{x} \pm 
+z \cdot
+\frac{s}{\sqrt{n}}
+$$
+
+\paragraph{Calculation:}
+
+$$
+145 g \pm 
+1.96 \cdot
+\frac{15.7 g}{\sqrt{4}}
+$$
+
+$$
+145 g \pm 
+1.96 \cdot
+\frac{15.7 g}{2}
+$$
+
+$$
+145 g \pm 
+1.96 \cdot
+7.85 g
+$$
+
+$$
+145 g \pm 
+15.386 g
+$$
+
+
+
+\section{Example for an application in machine learning}
+
+To indicate the performance or skill of a neural network, the classification accuracy or classification error of the model are specified with a confidence interval.
+
+
+
+\subsection{Machine learning and validation data set}
+
+The validation data set is a sample and is used to calculate the model skill. It should not have any elements from the training data set and be randomly chosen. The larger the data set the better. It should have at least 30 elements.
+
+The correct predictions must be available, so that they can later be compared with the predictions of the model.
+
+
+
+\subsection{Machine learning and classification accuracy}
+
+The classification accuracy defines the precision of the model's predications.
+
+\paragraph{Formula for classification accuracy in percentage:}
+
+$$
+classification\_accuracy =
+\frac{correct\_predictions}{total\_predictions}
+* 100 \%
+$$
+
+
+
+\subsection{Machine learning and classification error}
+
+The classification error defines how many of the model's predications are wrong.
+
+\paragraph{Formula for classification error in percentage:}
+
+$$
+classification\_error =
+\frac{incorrect\_predictions}{total\_predictions}
+* 100 \%
+$$
+
+\paragraph{or}
+
+$$
+classification\_error =
+100 \% - classification\_accuracy
+$$
+
+
+
+\subsection{Application of an confidence interval to the classification error by an example}
+
+A model with a classification error of 5% (classification_error = 0.05) on a validation data set with 100 elements (n = 100).
+
+The chosen confidence level is 95% (z = 1.96).
+
+\paragraph{Chosen confidence interval formula:}
+
+$$
+classification\_error \pm
+z \cdot 
+\sqrt{
+\frac
+{classification\_error \cdot (1 - classification\_error)}
+{n}
+}
+$$
+
+\paragraph{Calculation:}
+
+$$
+0.05 \pm
+1.96 \cdot 
+\sqrt{
+\frac
+{0.05 \cdot (1 - 0.05)}
+{100}
+}
+$$
+
+$$
+0.05 \pm
+1.96 \cdot
+\sqrt{
+\frac
+{0.05 \cdot 0.95}
+{100}
+}
+$$
+
+$$
+0.05 \pm
+1.96 \cdot
+\sqrt{
+\frac
+{0.0475}
+{100}
+}
+$$
+
+$$
+0.05 \pm
+1.96 \cdot
+\sqrt{0.000475}
+$$
+
+$$
+0.05 \pm
+1.96 \cdot 0.0217
+$$
+
+$$
+0.05 \pm 0.0425
+$$
+
+\paragraph{Conclusion:}
+
+Our Model has a classification error between 0.75% and 9.25% with a confidence level of 95%.
+
+\end{document}
