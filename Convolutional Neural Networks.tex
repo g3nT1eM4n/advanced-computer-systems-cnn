@@ -2,6 +2,7 @@
 \usepackage[english]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
+\usepackage{float}
 
 \pagestyle{headings}
 \begin{document}
@@ -62,6 +63,12 @@ Modern neural networks use a commonly used technique called backpropagation to t
 
 \section{Sigmoid function}
 
+\begin{figure}[H]
+  \includegraphics[width=\linewidth]{Images/sigmoid.png}
+  \caption{Sigmoid functions.}
+  \label{fig:Sigmoid Function}
+\end{figure}
+
 The sigmoid which has high biological plausibility. It has output values between 0 and 1.
 
 For a value of X above 2 or below -2, tends to bring the Y value (the prediction) to the edge of the curve, very close to 1 or 0. This enables clear predictions.
@@ -78,11 +85,25 @@ The sigmoid function is computationally expensive.
 
 \section{Hyperbolic tangent}
 
+\begin{figure}[H]
+  \includegraphics[width=\linewidth]{Images/TanHhyperbolic.png}
+  \caption{Hyperbolic Tangent.}
+  \label{fig:Hyperbolic Tangent}
+\end{figure}
+
+
 Hyperbolic tangent is zero centered which balances the amount of positive and negative values. Therefore it is easier to model inputs that have strong negative, neutral, and strong positive values.
 
 It has the same disadvantages as the sigmoid function.
 
 \section{ReLU}
+
+\begin{figure}[H]
+  \includegraphics[width=\linewidth]{Images/ReLu.png}
+  \caption{ReLu Function.}
+  \label{fig:ReLu Function}
+\end{figure}
+
 
 ReLU is more efficient and allows the network to converge very quickly.
 
@@ -90,27 +111,31 @@ ReLU is a non-linear function, although it looks like a linear function. On top 
 
 \section{(Leaky) ReLU}
 
+\begin{figure}[H]
+  \includegraphics[width=\linewidth]{Images/LeakyReLu.png}
+  \caption{LeakyReLu Function.}
+  \label{fig:LeakyReLu Function}
+\end{figure}
+
 Other than leaky ReLU there are also other ReLU which is not in use nowadays because it does not provide consistent predictions for negative input values.
 
 \section{Chained convolution}
 
-\begin{figure}[h!]
+\begin{figure}[H]
   \includegraphics[width=\linewidth]{Images/chainedconvoluion(17).png}
   \caption{Chained Convolution.}
   \label{fig:Chained Convolution}
 \end{figure}
 
 Activation function will be used more than once.
-
 The first Convolutional Layer is responsible for capturing the Low-Level features such as edges, color, gradient orientation, etc.
 
 With added layers, the architecture adapts to the Mid-level Feature as well as High-Level features, which provides a network which has the wholesome understanding of images in the dataset.
-
 In the low-level feature the edges, color, gradient are being detected. In Mid-level feature it is more clear to see the form of the objective and in the High-level feature it almost looks like a tyre.
 
 \section{Pooling}
 
-\begin{figure}[h!]
+\begin{figure}[H]
   \includegraphics[width=\linewidth]{Images/pooling(18).png}
   \caption{Pooling Layer.}
   \label{fig:Pooling}
@@ -135,7 +160,7 @@ Therefore, we can say that Max Pooling performs a lot better than Average Poolin
 
 \section{Hidden layer}
 
-\begin{figure}[h!]
+\begin{figure}[H]
   \includegraphics[width=\linewidth]{Images/hiddenlayer(19).png}
   \caption{Hidden Layer.}
   \label{fig:hiddenlayer}
@@ -160,7 +185,7 @@ The Softmax layer must have the same number of nodes as the output layer.
 
 \section{Flatten}
 
-\begin{figure}[h!]
+\begin{figure}[H]
   \includegraphics[width=\linewidth]{Images/flatten(22).png}
   \caption{Flatten.}
   \label{fig:flatten}
@@ -172,7 +197,7 @@ The first row first column element of the matrix would be the first element of t
 
 \section{Fully connected layer}
 
-\begin{figure}[h!]
+\begin{figure}[H]
   \includegraphics[width=\linewidth]{Images/fullyconnectedlayer(23).png}
   \caption{Fully Connected Layer.}
   \label{fig:fully connected layer}
@@ -203,7 +228,7 @@ The previous layer passes on which of these features it detects, and based on th
 
 \section{Bounding box}
 
-\begin{figure}[h!]
+\begin{figure}[H]
   \includegraphics[width=\linewidth]{Images/boundingbox27.png}
   \caption{Bounding Box.}
   \label{fig:Bounding Box}
@@ -218,7 +243,7 @@ The origin of the coordinates in the image is the upper left corner of the image
 
 \section{Multiple Objects}
 
-\begin{figure}[h!]
+\begin{figure}[H]
   \includegraphics[width=\linewidth]{Images/multipleobjects28.png}
   \caption{Multiple Objects.}
   \label{fig:Multiple Objects}
