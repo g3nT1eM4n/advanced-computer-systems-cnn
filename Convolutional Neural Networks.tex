@@ -257,7 +257,11 @@ As a end result, after measuring both the X and Y-axis coordinates for the both 
 Each of the 2000 region proposals generated from every image (using the selective search algorithm) are converted into fixed inputs of size 227 x 227 by a simple warping, irrespective of the size or aspect ratio to enable their use in fine-tuning the CNN (we need fixed-sized inputs irrespective of the actual dimensions to feed to the CNN).
 The class-specific dot products between the features and SVM weights are combined into a single matrix-matrix product for an image (Figure ). That is, for every image, a 2000 x 4096 feature matrix is generated (the 4096-d feature from the CNN for all 2000 region proposals). The SVM weight matrix is 4096 x N where N is the number of classes.
 
-\section{Bounding box regression}
+\begin{figure}[H]
+  \includegraphics[width=\linewidth]{Images/(SVMs.png}
+  \caption{SVMs.}
+  \label{fig:SVMs}
+\end{figure}
 
 \section{Regional Convolutional Neural Network (R-CNN)}
 
@@ -265,6 +269,13 @@ Regional convolutional neural networks are a combination between traditional met
 Traditional methods are great in recognizing objects within the image, however they do not implement automatic classifers for new objects. In other words, new objects have to be added manually. By combining traditional methods and convolutional neural networks it can outsource the automatic classifer to the convolutional neural networks. Still there is the problem of fixed size images that the convolutional neural networks needs. It is not convenient to only accept one size of images. The solution is a wrapper that simply reduces the size of an image but in execute this wrapper the image often lost is orginal shape.
 
 Unfortunatly, there is a new problem and thats the training due to wrap resizing. To fix that problem, building a complex pipline can be considered as a solution. Objects are represented as a vectors. Each vector has a flag which indicates whether the object is part of the class or not. Usually, traditional methods generate about 2000 potential objects.
+
+
+\begin{figure}[H]
+  \includegraphics[width=\linewidth]{Images/(R-CNN.png}
+  \caption{R-CNN.}
+  \label{fig:R-CNN}
+\end{figure}
 
 The steps required to classify an image are detection of features, generation of feature maps, allocation of features to objects and adaption of the image size to the fully connected layer.
 
@@ -289,6 +300,12 @@ Regional convolutional neural networks are the simplest solution and thats makes
 
 Region of interest pooling uses pooling layer in a loop to reduce the size of an image until it gets the fixed size required by the fully connected layer.
 
+\begin{figure}[H]
+  \includegraphics[width=\linewidth]{Images/(RoI-Pooling.png}
+  \caption{RoI-Pooling.}
+  \label{fig:RoI-Pooling}
+\end{figure}
+
 A triangle like shape can be seen in the above picture. Each pooling layer reduces the size to 1/4 of the orginal size.
 This is a better alternative to the wrap layer because it is already used in normal convolutional neural networks where backpropogation is applied. Complex piplines become obsolete.
 
@@ -296,11 +313,23 @@ This is a better alternative to the wrap layer because it is already used in nor
 
 Fast regional convolutional neural networks are a combination of R-CNN, RoI-Pooling. Also feature localisation and feature feature learning are reversed. Less data has to be processed by the internal convolutional neural network.
 
+\begin{figure}[H]
+  \includegraphics[width=\linewidth]{Images/(Fast R-CNN.png}
+  \caption{Fast R-CNN.}
+  \label{fig:Fast R-CNN}
+\end{figure}
+
 Instead of sending each possible object through the convolutional neural networks, detection and classification of features (including traditional methods) are splitted. Feature learning creates feature maps which apply traditional methods to identify the positions and the number of objects. RoI-Pooling reduces the feature map size to a fixed size vector for the fully connected layers to find a class label. Bounding box regression is used to train the networks capabilities to create bounding boxes. To train the CNN itself the softmax function is used. Fast R-CNNs output probabilities for class labels rather than just a flag.
 
 \section{Region proposal network (RPN)}
 
 Region proposal networks are convolutional neural networks whose only purpose is to recognize objects within a feature map.
+
+\begin{figure}[H]
+  \includegraphics[width=\linewidth]{Images/(RPN.png}
+  \caption{RPN.}
+  \label{fig:RPN}
+\end{figure}
 
 Using only one convolutional layer a sliding window is applied to a 3x3 sized part of the input matrix. This creates anchor-boxes in every possible rectangle shape and size within the image. To rescale to a specific size (128px, 256px, 512px, a exponent of 2) an intermediate layers is used.
 
@@ -309,6 +338,14 @@ The classification layer indicates for each box whether it contains an object. T
 \section{Faster R-CNN}
 
 Faster R-CNNs use RPN instead of traditional methods (unlike fast R-CNNs) detect features in an image and create bounding boxes on feature maps.
+
+\begin{figure}[H]
+  \includegraphics[width=\linewidth]{Images/(Faster R-CNN.png}
+  \caption{Faster R-CNN.}
+  \label{fig:Faster R-CNN}
+\end{figure}
+
+It has the same structer as Fast R-CNN, with the expection that it uses RPN instead of Traditional Methods
 
 PROS/CONS
 
@@ -320,13 +357,30 @@ The speed and accuarcy boost will be gained by parallel working conditions. This
 
 \section{YOLO (You only look once)}
 
+\includegraphics[width=\linewidth]{Images/(Grid.png}
+  \caption{Grid.}
+  \label{fig:Grid}
+\end{figure}
+
 To increase the overall performance of the network even further YOLO uses „grids“ which divides the image into subareas instead of creating every possible box. Less boxes have to be created. This leads to a huge leap in performance. To be even more efficent YOLO uses RPNs and CNNs. Fewer convolutional layers are needed.
 
 On the other hand it becomes more complex and extremely diffcult to understand what exactly is happening. Internally, the network seperates the creation of bounding boxes from computing the confidence.
 
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{Images/(YOLO.png}
+  \caption{YOLO.}
+  \label{fig:YOLO}
+\end{figure}
+
 YOLO projects a grid on the input image (non fixed size). Many cells in a grid increase accuracy and decrease the speed of the network. Simultaneously, CNNs create bounding boxes and classify them. Instead of feature maps, feature learning outputs bounding boxes and a confidence for a feature. Further the results get flattened for the fully connected layer. Classfication finds a label for each object on the grid. Also YOLO determines whether every box acquires an individual class label. In the end YOLO implements bounding box regression and the softmax function.
 
 \section{Non-Max-Suppression}
+
+\begin{figure}[H]
+  \includegraphics[width=\linewidth]{Images/(Suppression.png}
+  \caption{Suppression.}
+  \label{fig:Suppression}
+\end{figure}
 
 R-CNN and fast R-CNN have a disadvantage compared to faster R-CNN. To reduce the number of bounding boxes to one the non-max-surpression is used. CNNs trigger the non-max-suppression-function to determine whether another box is overlapped with the same class. If overlapping occurs, only the box with the highest class score is kept while the others are dropped.
 
