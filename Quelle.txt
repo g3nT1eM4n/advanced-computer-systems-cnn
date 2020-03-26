@@ -8,7 +8,9 @@ Bounding Box:   https://medium.com/@smallfishbigsea/faster-r-cnn-explained-864d4
 
 Bounding Box:   https://hackernoon.com/micro-learnings-image-classification-vs-object-detection-the-difference-77110b592343
 
-Pooling,Flatten,Chained Convolutuion :  https://towardsdatascience.com/a-comprehensive-guide-to-convolutional-neural-networks-the-eli5-way-3bd2b1164a53
+Pooling,Flatten,Chained Convolutuion :  https://towardsdatascience.com/a-comprehensive-guide-to-convolutional-neural-networks-the-eli5-way-3bd2b1164a53#
+
+Classification & Definition :  https://azati.ai/image-detection-recognition-and-classification-with-machine-learning/
 
 Conventional method: https://miro.medium.com/max/638/0*g4izhFRwaDAi9vLB.png
 
