@@ -1,0 +1,13 @@
+Fully Connected Layer:   https://missinglink.ai/guides/convolutional-neural-networks/fully-connected-layers-convolutional-neural-networks-complete-guide/
+
+CNN:   https://towardsdatascience.com/simple-introduction-to-convolutional-neural-networks-cdf8d3077bac
+
+
+Activation Functions:   https://missinglink.ai/guides/neural-network-concepts/7-types-neural-network-activation-functions-right/
+
+Bounding Box:   https://medium.com/@smallfishbigsea/faster-r-cnn-explained-864d4fb7e3f8
+
+Bounding Box:   https://hackernoon.com/micro-learnings-image-classification-vs-object-detection-the-difference-77110b592343
+
+Pooling,Flatten,Chained Convolutuion :  https://towardsdatascience.com/a-comprehensive-guide-to-convolutional-neural-networks-the-eli5-way-3bd2b1164a53
+
